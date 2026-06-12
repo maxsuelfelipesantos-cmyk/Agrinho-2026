@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroForte - Tecnologia e Produtividade</title>
+    
+    <!-- ESTILOS CSS UNIFICADOS -->
+    <style>
+        /* --- VARIÁVEIS DE CORES VERDES --- */
+        :root {
+            --primary-dark: #1E3F20;   /* Verde Escuro / Floresta */
+            --primary: #2E6F40;        /* Verde Agro Principal */
+            --primary-light: #52B788;  /* Verde Claro / Esmeralda */
+            --bg-light: #F4F9F5;       /* Fundo quase branco esverdeado */
+            --text-dark: #1A241B;      /* Texto quase preto */
+            --white: #FFFFFF;
+            --transition: all 0.3s ease;
+        }
+
+        /* --- ESTILOS GERAIS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 4rem;
+        }
+
+        /* --- BOTÕES --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 2.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        /* --- PARTE 1: NAVBAR & HERO --- */
+        .header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .logo span {
+            color: var(--primary-light);
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-left: 2rem;
+            transition: var(--transition);
+        }
+
+        .nav a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(30, 63, 32, 0.7), rgba(30, 63, 32, 0.5)), 
+                        url('https://unsplash.com') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* --- PARTE 2: SOBRE NÓS & CONTADORES --- */
+        .about {
+            background-color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            padding: 2.5rem;
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            border-bottom: 4px solid var(--primary-light);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-card span:not(.stat-number) {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* --- PARTE 3: SERVIÇOS & CARDS --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(46, 111, 64, 0.1);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        /* --- PARTE 4: FORMULÁRIO DE CONTATO --- */
+        .contact {
+            background-color: var(--white);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--bg-light);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #E2E8F0;
+            border-radius: 5px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .form-feedback {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem;
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .hero-content h1 { font-size: 2.3rem; }
+            .contact-form { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PARTE 1: HEADER & HERO BANNER (INTRODUÇÃO) -->
+    <header class="header">
+        <div class="container nav-container">
+            <div class="logo">Agro<span>Forte</span></div>
+            <nav class="nav">
+                <a href="#home">Início</a>
+                <a href="#sobre">Sobre Nós</a>
+                <a href="#servicos">Tecnologias</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Cultivando o Futuro com Inovação</h1>
+            <p>Soluções sustentáveis e inteligentes para maximizar o rendimento da sua lavoura.</p>
+            <a href="#servicos" class="btn">Conhecer Soluções</a>
+        </div>
+    </section>
+
+    <!-- PARTE 2: SOBRE NÓS (COM CONTADORES INTERATIVOS) -->
+    <section id="sobre" class="about section-padding">
+        <div class="container">
+            <h2 class="section-title">Nossa Trajetória</h2>
+            <p class="section-subtitle">Liderando a transformação digital no campo com respeito à terra.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number" data-target="150">0</span><span>K+</span>
+                    <p>Hectares Monitorados</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-target="98">0</span><span>%</span>
+                    <p>Clientes Satisfeitos</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-target="12">0</span><span>+</span>
+                    <p>Anos de Experiência</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTE 3: SERVIÇOS/TECNOLOGIAS (CARDS INTERATIVOS) -->
+    <section id="servicos" class="services section-padding">
+        <div class="container">
+            <h2 class="section-title">Tecnologias de Precision</h2>
+            <div class="services-grid">
+                
+                <div class="card">
+                    <div class="card-icon">🌱</div>
+                    <h3>Análise de Solo</h3>
+                    <p>Mapeamento químico e físico completo para aplicação exata de nutrientes.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🛸</div>
+                    <h3>Drones de Alta Linha</h3>
+                    <p>Monitoramento aéreo térmico para detecção precoce de pragas e estresse hídrico.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3>Gestão de Safra</h3>
